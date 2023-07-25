@@ -37,8 +37,8 @@ console.log(`I numeri inseriti sono compresi tra 40 e 60 0 70 e 100? ${resultChe
 
 /* Es. 4 */
 function checkNameCountry(country){
-    let prefix1 = 'New'
-    let prefix2 = 'Los'
+    let prefix1 = 'New '
+    let prefix2 = 'Los '
 
     if ((country.startsWith(prefix1)) || (country.startsWith(prefix2))){
         return country
@@ -94,7 +94,7 @@ function checkAngle(degree){
             return 'piatto'
             break;
         default:
-            return 'sconosciuto'
+            return 'angolo sconosciuto'
             break;
     }
 }
