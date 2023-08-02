@@ -98,7 +98,32 @@ createArray([1, 2, 3, 4],2)
 
 
 /* Es. 9*/
-
-
+const buildPyramid = (num) => {
+  for (let i = 1; i <= num; i++) {
+    const totali = num + num - 1
+    const pieni = i + i - 1
+    const spaziPerLato = totali - pieni
+    console.log(
+      `${
+        " ".repeat(spaziPerLato / 2) +
+        "#".repeat(pieni) +
+        " ".repeat(spaziPerLato / 2)
+      }`
+    )
+  }
+}
+let resultBuildPyramid = buildPyramid(5)
+console.log(resultBuildPyramid);
 
 /* Es. 10 */
+const matrixN = (numb) => {
+  const result = []
+  for (let i = 0; i < numb; i++) {
+      let temparr = []
+      for (let t = 0; t < numb; t++) {
+        temparr.push(i)
+      }
+      result.push(temparr)
+  }
+  return result
+}
