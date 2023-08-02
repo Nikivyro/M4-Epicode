@@ -1,0 +1,19 @@
+#cart{
+    position: relative;
+}
+#cart #counterBooksTop{
+    position: absolute;
+    text-align: center;
+    top: -5px;
+    right: -5px;
+    background: #F44336;
+    color: #ffffff;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    font-size: 0.8rem;
+}
+.book_content img{
+    object-fit: cover;
+    aspect-ratio: 1/1.5;
+}

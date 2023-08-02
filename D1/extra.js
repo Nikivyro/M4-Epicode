@@ -42,7 +42,17 @@ console.log(resultCheckAnagramma)
 
 
 /* Es. 3 */
-
+const findAnagrammi = (arr, parola) => {
+  const anagrammiArr = []
+  for (const anagramma of arr) {
+    if (checkAnagramma(parola, anagramma)) {
+      anagrammiArr.push(anagramma)
+    }
+  }
+  return anagrammiArr
+}
+let resultfindAnagrammi = findAnagrammi(["carenti", "incerta", "espatrio"],"cartine")
+console.log('Risultato findAnagrammi: ', resultfindAnagrammi)
 
 /* Es. 4 */
 function checkPalindromo(string4){
