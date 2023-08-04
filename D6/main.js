@@ -1,5 +1,9 @@
 const usersContainer = document.getElementById("usersResponse");
 const errorMsg = document.createElement("p");
+let choosedOptionInput = document.getElementById("chooseOptioon");
+const searchTextInput = document.getElementById("searchText");
+const resetBtn = document.getElementById('resetBtn');
+let table = ''
 
 const filterUsers = (users, choosedOption, searchText) => {
   return users.filter((user) => {
@@ -17,7 +21,7 @@ const showUsers = (filteredUsers) => {
     return;
   }
 
-  const table = document.createElement("table");
+  table = document.createElement("table");
   table.classList.add('table','table-striped','table-hover');
   table.innerHTML = `
     <thead>
@@ -46,10 +50,7 @@ const showUsers = (filteredUsers) => {
 }
 
 const searchUser = async () => {
-  const choosedOptionInput = document.getElementById("chooseOptioon");
   const choosedOption = choosedOptionInput.value;
-
-  const searchTextInput = document.getElementById("searchText");
   const searchText = searchTextInput.value;
 
   try {
@@ -58,11 +59,23 @@ const searchUser = async () => {
 
     const filteredUsers = filterUsers(users, choosedOption, searchText);
     showUsers(filteredUsers);
+    
+    resetBtn.classList.remove('d-none');
+    resetBtn.classList.add('d-block');
 
   } catch (error) {
-    errorMsg.innerHTML = "Inserire una selezione valida o riprovare inserendo altri campi.";
+    errorMsg.innerHTML = "Inserire una selezione valida o riprovare compilando i campi richiesti.";
     usersContainer.appendChild(errorMsg);
 
     console.error("Errore durante la fetch o la ricerca:", error);
   }
+}
+
+const resetSearch = () =>{
+  var allOption = choosedOptionInput.options;
+  var selected = allOption[choosedOptionInput.selectedIndex = 0];
+  searchTextInput.value = '';
+  usersContainer.innerHTML = '';
+  resetBtn.classList.remove('d-block');
+  resetBtn.classList.add('d-none');
 }

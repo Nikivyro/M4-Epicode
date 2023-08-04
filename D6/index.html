@@ -13,11 +13,11 @@
           <div class="container">
             <div class="row row w-100 align-items-center">
                 <div class="col-12 text-center">
-                  <h1>Ricerca utenti</h1>
+                  <h1>UMS - Ricerca utenti</h1>
                 </div>
-                <div class="col-12 col-md-5 mb-3">
+                <div class="col-12 col-md-4 mb-3">
                   <label for="choose" class="form-label">Filtra campo</label>
-                  <select class="form-select" name="chooseOptioon" id="chooseOptioon">
+                  <select class="form-select" name="chooseOptioon" id="chooseOptioon" required>
                     <option selected disabled>- Seleziona -</option>
                     <option value="email">Email</option>
                     <option value="username">Username</option>
@@ -26,12 +26,17 @@
                 </div>
                 <div class="col-12 col-md-5 mb-3">
                   <label for="searchText" class="form-label">Cerca</label>
-                  <input type="text" id="searchText" class="form-control" placeholder="Cerca un utente" aria-label="Cerca un utente" aria-describedby="searchText">
+                  <input type="text" id="searchText" class="form-control" placeholder="Cerca un utente" aria-label="Cerca un utente" aria-describedby="searchText" required>
                 </div>
-                <div class="col-12 col-md-2 mt-3">
-                  <button class="btn btn-dark input-group-text" onclick="searchUser()" id="searcBtn">
-                    <i class="bi bi-search"></i>
-                  </button>
+                <div class="col-12 col-md-3 mt-3">
+                  <div class="d-flex">
+                    <button class="btn btn-dark input-group-text me-1" onclick="searchUser()" id="searchBtn">
+                      <i class="bi bi-search"></i>
+                    </button>
+                    <button class="btn btn-danger input-group-text d-none" onclick="resetSearch()" id="resetBtn">
+                      <i class="bi bi-trash3"></i>
+                    </button>
+                  </div>
                 </div>
             </div>
         </div>
