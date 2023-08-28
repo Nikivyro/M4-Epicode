@@ -1,5 +1,6 @@
 const URL = 'https://striveschool-api.herokuapp.com/api/product/'
 const productsContainer = document.getElementById("productsResponse");
+const errorMsg = document.getElementById("errorMsg");
 
 const getProducts = async () => {
     try {
@@ -27,7 +28,7 @@ const getProducts = async () => {
       productsContainer.innerHTML = allProducts.join("");
 
     } catch (error) {
-      errorMsg.innerHTML = "Inserire una selezione valida o riprovare compilando i campi richiesti.";
+      errorMsg.innerHTML = "Problemi di connessione con il server.";
       productsContainer.appendChild(errorMsg);
   
       console.error("Errore durante la fetch o la ricerca:", error);
@@ -35,3 +36,12 @@ const getProducts = async () => {
 }
 
 getProducts()
+
+
+window.onload = function(){
+	setTimeout(function(){
+    var loader = document.getElementsByClassName("loader")[0];
+    loader.className="loader fadeout" ;
+    setTimeout(function(){loader.style.display="none"},1000)
+	},1000)
+}

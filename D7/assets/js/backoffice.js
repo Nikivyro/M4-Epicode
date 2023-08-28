@@ -64,6 +64,7 @@ async function createProduct(name, description, brand, imageUrl, price) {
         console.error("Errore nella creazione del prodotto" , error);
     } finally{
         hideSpinner()
+        titleForm.innerHTML = 'Aggiungi un nuovo prodotto'
     }
 }
 
@@ -82,6 +83,7 @@ async function updateProduct(id, name, description, brand, imageUrl, price) {
         console.error("Errore nella modifica del prodotto", error);
     } finally {
         hideSpinner()
+        titleForm.innerHTML = 'Aggiungi un nuovo prodotto'
     }
     
 }
@@ -145,7 +147,7 @@ async function confirmDelete() {
             // console.log("Product deleted successfully");
             await getProducts();
         } catch (error) {
-            console.error("Failed to delete product:", error);
+            console.error("Prodotto non eliminato:", error);
         } finally {
             hideSpinner();
             deleteProductId = null;
@@ -163,6 +165,18 @@ function editProduct(id, name, description, brand, imageUrl, price) {
     productImgInput.value = imageUrl;
     productPriceInput.value = price;
     titleForm.innerHTML = `Stai modificando ${name}`
+}
+
+function clearForm() {
+    productIdInput.value = '';
+    productNameInput.value = '';
+    productDescInput.value = '';
+    productBrandInput.value = '';
+    productImgInput.value = '';
+    productPriceInput.value = '';
+    titleForm.innerHTML = `Aggiungi un nuovo prodotto`
+    productForm.scrollIntoView();
+    productNameInput.focus();
 }
 
 getProducts();

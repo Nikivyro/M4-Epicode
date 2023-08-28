@@ -7,26 +7,28 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
-<body>
+<body data-bs-theme="dark">
     <header>
-            <nav class="navbar navbar-expand-sm navbar-light bg-light">
-                <div class="container-fluid">
-                    <div class="row justify-content-between align-items-center mb-4">
-                        <div class="col">
-                            <h1>Backoffice</h1>
-                        </div>
-                        <div class="col text-end">
-                            <a href="index.html"><i class="bi bi-box-arrow-in-left"></i> Torna alla Home</a>
-                        </div>
-                    </div>
-                </div>
-            </nav>
+      <nav class="navbar navbar-expand-sm">
+        <div class="container">
+          <a class="navbar-brand" href="index.html"><img src="assets/img/logo.svg" alt="Manga Shop" width="90"></a>
+          <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+            <li class="nav-item me-2 mb-3 mb-lg-0">
+              <a class="btn btn-primary" href="index.html"><i class="bi bi-box-arrow-in-left"></i> Torna alla Home</a>
+            </li>
+            <li class="nav-item">
+              <button class="btn btn-success" onclick="clearForm()"><i class="bi bi-plus-lg"></i> Aggiungi nuovo prodotto</button>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </header>
     <section>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 col-lg-9">
-                    <table class="table table-striped table-hover table-sm">
+                  <div class="table-responsive">
+                    <table class="table table-striped table-hover table-bordered table-sm table-dark">
                       <thead>
                         <tr scope="row">
                             <th scope="col-1">Immagine</th>
@@ -43,9 +45,10 @@
                     <div class="spinner-border" role="status">
                         <span class="visually-hidden">Caricamento...</span>
                     </div>
+                  </div>
                 </div>
                 <div class="col-lg-3">
-                    <div class="content-form p-4 my-3 rounded-3 shadow">
+                    <div class="sticky-top content-form p-4 my-3 rounded-3 shadow">
                         <h2 id="titleForm" class="mb-3 h4">Aggiungi un prodotto</h2>
                         
                         <form id="product-form">
