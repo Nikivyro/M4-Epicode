@@ -22,6 +22,9 @@ function hideSpinner() {
 productForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    const isFormValid = handlerFormValidation();
+    if (!isFormValid) return false;
+
     const name = productNameInput.value;
     const description = productDescInput.value;
     const brand = productBrandInput.value;
@@ -144,7 +147,6 @@ async function confirmDelete() {
                     "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGU0ODRmZGRmZmI4YjAwMTQ0MTNiYjEiLCJpYXQiOjE2OTI2OTc4NTQsImV4cCI6MTY5MzkwNzQ1NH0.G2_s4iExw1Z8ix0cWRpJBoNZ5SpbQmx5ekcQ6axKa2I"
                 },
             });
-            // console.log("Product deleted successfully");
             await getProducts();
         } catch (error) {
             console.error("Prodotto non eliminato:", error);
@@ -178,6 +180,61 @@ function clearForm() {
     productForm.scrollIntoView();
     productNameInput.focus();
 }
+
+
+function handlerFormValidation() {
+  
+    const validation = validateForm()
+    let isValid = true;
+  
+    if (!validation.isValid) {
+  
+      for (const field in validation.errors) {
+        const errorElement = document.getElementById(`${field}-error`)
+        errorElement.textContent = '';
+        errorElement.textContent = validation.errors[field]
+      }
+  
+      isValid = false
+      
+    }
+  
+    return isValid
+  
+  }
+  
+  function validateForm() {
+    const errors = {}
+  
+    // const name = document.getElementById('product-name').value
+    // const email = document.getElementById('product-desc').value
+    // const username = document.getElementById('product-brand').value
+    // const phone = document.getElementById('product-img').value
+    // const city = document.getElementById('product-price').value
+  
+    if (!productNameInput) errors.name = "Il campo nome è obbligatorio."
+    else errors.name = "";
+  
+    if (!productDescInput) errors.desc = "Il campo descrizione è obbligatorio."
+    else errors.desc = "";
+  
+    if (!productBrandInput) errors.brand = "Il campo brand è obbligatorio."
+    else errors.brand = "";
+  
+    if (!productImgInput) errors.img = "Il campo immagine è obbligatorio."
+    else errors.img = "";
+  
+    if (!productPriceInput) errors.price = "Il campo prezzo è obbligatorio."
+    else errors.price = "";
+  
+    return {
+      isValid: Object.values(errors).every(value => value === ''),
+      errors
+    }
+    
+  }
+
+
 
 getProducts();
 
