@@ -11,14 +11,16 @@ const getProducts = async () => {
       const products = await response.json();
       const allProducts = products.map(
         (product) =>
-          `<div class="col-6 col-lg-4">
-            <img src="${product.imageUrl}" class="img-fluid" alt="">
-            <div class="card-body">
-              <h3>${product.name}</h3>
-              <span>${product.brand}</span>
-              <p>${product.description}</p>
-              <span>${product.price}</span>
-              <a href="detail.html?q=${product._id}&back=index.html" title="${product.name}"><i class="bi bi-eye"></i></a>
+          `<div class="col-6 col-lg-3 mb-4">
+            <div class="card">
+              <img src="${product.imageUrl}" class="img-fluid" alt="${product.name}">
+              <div class="card-body">
+                <h3 class="h5">${product.name}</h3>
+                <span class="badge bg-primary">${product.brand}</span>
+                <p class="text-truncate">${product.description}</p>
+                <span class="h5 text-danger">€ ${product.price}</span>
+                <a href="detail.html?q=${product._id}&back=index.html" title="${product.name}" class="float-end btn btn-primary btn-sm"><i class="bi bi-eye"></i> Guarda</a>
+              </div>
             </div>
           </div>`
       );
@@ -32,8 +34,4 @@ const getProducts = async () => {
     }
 }
 
-
-
-
 getProducts()
-

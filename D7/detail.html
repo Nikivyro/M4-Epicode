@@ -1,91 +1,59 @@
-<!doctype html>
-<html lang="it">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Details Book shop</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-  </head>
-  <body>
-    <header>
-        <!-- <nav class="navbar navbar-expand-sm navbar-light bg-light">
-            <div class="container">
-              <a class="navbar-brand" href="#">LOGO</a>
-              <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
-                  aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="collapsibleNavId">
-                  <div class="input-group mx-auto w-75">
-                    <input type="text" id="searchText" class="form-control" placeholder="Cerca un libro" aria-label="Cerca un libro" aria-describedby="basic-addon1">
-                    <span class="input-group-text" id="basic-addon1" onclick="searchBooks()">
-                        <i class="bi bi-search"></i>
-                    </span>
-                  </div>
-                  <div id="cart">
-                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
-                      <i class="bi bi-cart"></i>
-                    </button>
-                  </div>
-              </div>
+</head>
+<body>
+    <div class="row">
+        <div class="col">
+          <a href="" id="back" class="text-dark"><i class="bi bi-arrow-left me-2"></i>Torna alla Home</a>
         </div>
-      </nav> -->
-    </header>
-    <main>
-        <div class="container">
-            <div class="row">
-              <div class="col">
-                <a href="" id="back" class="text-dark"><i class="bi bi-arrow-left me-2"></i>Torna alla Home</a>
-              </div>
-            </div>
-            <div class="row py-5" id="productDetail"></div>
-        </div>
-    </main>
-    <footer><span>&copy2023 Book Shop</span></footer>
+      </div>
+    <div class="row py-5" id="productDetail"></div>
+</body>
+<script>
+    const prodContainer = document.getElementById('productDetail')
+    const urlParams = new URLSearchParams(window.location.search);
+    const bookId = urlParams.get('q');
+    const backToIndex = urlParams.get('back');
+    document.getElementById("back").href=`${backToIndex}`; 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-    <script>
-        const prodContainer = document.getElementById('productDetail')
-        const urlParams = new URLSearchParams(window.location.search);
-        const bookId = urlParams.get('q');
-        const backToIndex = urlParams.get('back');
-        document.getElementById("back").href=`${backToIndex}`; 
-
-        const productDetailUrl = `https://striveschool-api.herokuapp.com/api/product/${bookId}`
-        
-        const getProduct = async () => {
-          try {
-          const response = await fetch(productDetailUrl, {
-              headers: {
-              "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGU0ODRmZGRmZmI4YjAwMTQ0MTNiYjEiLCJpYXQiOjE2OTI2OTc4NTQsImV4cCI6MTY5MzkwNzQ1NH0.G2_s4iExw1Z8ix0cWRpJBoNZ5SpbQmx5ekcQ6axKa2I"
-              }
-          });
-          const product = await response.json();
-              // console.log(book);
-              document.title = `${product.name}`;
-              prodContainer.innerHTML = `
-                <div class="row row-cols-1 row-cols-lg-2">
-                  <div class="col">${product.imageUrl}</div>
-                  <div class="col">
-                    <h1>${product.name}</h1>
-                    <p>${product.description}</p>
-                    <span>${product.brand}</span>
-                    <span>${product.price}</span>
-                  </div>
+    const productDetailUrl = `https://striveschool-api.herokuapp.com/api/product/${bookId}`
+    
+    const getProduct = async () => {
+        try {
+        const response = await fetch(productDetailUrl, {
+            headers: {
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGU0ODRmZGRmZmI4YjAwMTQ0MTNiYjEiLCJpYXQiOjE2OTI2OTc4NTQsImV4cCI6MTY5MzkwNzQ1NH0.G2_s4iExw1Z8ix0cWRpJBoNZ5SpbQmx5ekcQ6axKa2I"
+            }
+        });
+        const product = await response.json();
+            // console.log(book);
+            document.title = `${product.name}`;
+            prodContainer.innerHTML = `
+            <div class="row row-cols-1 row-cols-lg-2">
+                <div class="col">${product.imageUrl}</div>
+                <div class="col">
+                <h1>${product.name}</h1>
+                <p>${product.description}</p>
+                <span>${product.brand}</span>
+                <span>${product.price}</span>
                 </div>
-
-              `;
-              
-          } catch (error) {
-              errorMsg.innerHTML = "Inserire una selezione valida o riprovare compilando i campi richiesti.";
-              productsContainer.appendChild(errorMsg);
-          
-              console.error("Errore durante la fetch o la ricerca:", error);
-          }
+            </div>
+            `;
+            
+        } catch (error) {
+            errorMsg.innerHTML = "Inserire una selezione valida o riprovare compilando i campi richiesti.";
+            productsContainer.appendChild(errorMsg);
+        
+            console.error("Errore durante la fetch o la ricerca:", error);
         }
+    }
 
-        getProduct()
-    </script>
-  </body>
+    getProduct() 
+</script>
 </html>

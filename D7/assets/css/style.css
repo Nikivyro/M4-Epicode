@@ -1,0 +1,9 @@
+body{
+    font-weight: 300;
+}
+#productsResponse img {
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+    aspect-ratio: 1/1;
+}
